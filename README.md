@@ -1,2 +1,2 @@
 # blackjack
-Repository for project
+Repository for project game "BlackJack"
