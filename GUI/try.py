@@ -43,39 +43,73 @@ class Button:
                     else:
                         action()
         else:
-            pygame.draw.rect(screen, self.inactive_color, (x , y , self.width, self.height))
+            pygame.draw.rect(screen, self.inactive_color, (x, y, self.width, self.height))
 
-        print_text(message=msg, x=x + 7, y=y + 25,font_size=font_size)
+        print_text(message=msg, x=x + 7, y=y + 25, font_size=font_size)
         
-def print_text(message, x, y, font_color = (0, 0, 0), font_type = "bold.ttf", font_size=19):
-    font_type = pygame.font.Font(font_type, font_size)
+def print_text(message, x, y, font_color = (255, 255, 255), font_type = "bold.ttf", font_size = 19):
+    font_type = pygame.font.Font(font_type, font_size, bold=True)
     text = font_type.render(message, True, font_color)
     screen.blit(text, (x, y))
     
 # def pause():
 #     pygame.mixer.music.pause()
 
-# def start_game():
-#     global
 
 start_button = Button(200, 80)
 quit_button = Button(112, 80)
 pygame.mixer.music.play(-1)#запуск фоновой музыки
+def game():
+    backgr = pygame.image.load('backgr.png')
+    show = True
+    while show:
+        # Ввод процесса (события)
+        for event in pygame.event.get():
+            # проверка закрытия окна
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
+        screen.blit(backgr, (0, 0))
+        pygame.display.update()
+        clock.tick(60)
 
+def end_game():
+    backgr = pygame.image.load('backgr.png')
+    restart_button = Button(200, 80)
+    quit1_button = Button(112, 80)
+
+    end = True
+    while end:
+        # Ввод процесса (события)
+        for event in pygame.event.get():
+            # проверка закрытия окна
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        screen.blit(backgr, (0, 0))
+        restart_button.draw(700, 500, 'НАЧАТЬ ЗАНОВО', screen, main_game, 19)
+        quit1_button.draw(740, 600, 'ВЫХОД', screen, quit, 19)
+
+        pygame.display.update()
+        clock.tick(60)
+def main_game():
+    global run_game, vol_sound, print_text
+def run_game():
 # Цикл игры
-running = True # флаг выхода из цикла игры
-while running:
-    # Отслеживание события: "закрыть окно"
-    screen.blit(background_image, (0, 0))
-    screen.blit(logo_img, (500, 200))
-    start_button.draw(700, 500, 'НАЧАТЬ ИГРУ', screen)
-    quit_button.draw(740, 600, 'ВЫХОД', screen, quit, 19)
-    pygame.display.update()
-    clock.tick(60)
-    
-    # Ввод процесса (события)
-    for event in pygame.event.get():
-        # проверка закрытия окна
-        if event.type == pygame.QUIT:
-            running = False
+    running = True # флаг выхода из цикла игры
+    while running:
+        # Отслеживание события: "закрыть окно"
+        screen.blit(background_image, (0, 0))
+        screen.blit(logo_img, (500, 200))
+        start_button.draw(700, 500, 'НАЧАТЬ ИГРУ', screen, game, 19)
+        quit_button.draw(740, 600, 'ВЫХОД', screen, quit, 19)
+        pygame.display.update()
+        clock.tick(60)
+        # Ввод процесса (события)
+        for event in pygame.event.get():
+            # проверка закрытия окна
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+run_game()
