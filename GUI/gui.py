@@ -1,6 +1,7 @@
 import pygame, sys
 from main import start_g
 
+
 pygame.init()
 WIDTH = 1600
 HEIGHT = 900
@@ -74,27 +75,14 @@ pygame.mixer.music.play(-1)#запуск фоновой музыки
 def game():
     pygame.display.iconify()
     start_g()
-    if start_g() is False:
-        pygame.display.get_active()
-    # backgr = pygame.image.load('backgr.png')
-    # show = True
-    # while show:
-    #     # Ввод процесса (события)
-    #     for event in pygame.event.get():
-    #         # проверка закрытия окна
-    #         if event.type == pygame.QUIT:
-    #             pygame.quit()
-    #             quit()
-
-    #     screen.blit(backgr, (0, 0))
-    #     pygame.display.update()
-    #     clock.tick(60)
+    # result = start_g()
+    # if not result:
+    #     pygame.display.get_active()
 
 # Цикл игры
 def run_game():
     running = True # флаг выхода из цикла игры
     while running:
-        # Отслеживание события: "закрыть окно"
         screen.blit(background_image, (0, 0))
         screen.blit(logo_img, (500, 200))
         start_button.draw(700, 500, screen, game)
@@ -108,11 +96,9 @@ def run_game():
         sound_text.print_text('ЗВУК:', 10,850, font_size = 20)
         pygame.display.update()
         clock.tick(60)
+        # Отслеживание события: "закрыть окно"
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            # elif event.type == pygame.USEREVENT:
-            #     pygame.quit()
-            #     start_g()
 run_game()
