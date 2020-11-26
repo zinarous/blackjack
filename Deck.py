@@ -13,7 +13,7 @@ class Card:
 
     #отрисока карт
     def __str__(self):
-        message = self.picture + '\nPoints: ' + str(self.points)
+        message = str(self.picture) + '\nPoints: ' + str(self.points)
         return message
 
 

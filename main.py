@@ -1,17 +1,11 @@
 from Deck import Deck
 from Game import Game
+from Player import Bot
 
-if __name__ == '__main__':
+def start_g():
     g = Game()
     g.start_game()
+    print('Количество ваших денег: ', g.player.money)
+    # if r is not None and r == 0:
+    #     return False
 
-    for pl in g.players:
-        pl.print_cards()
-        print('*********')
-
-    #d = Deck()
-    #
-    #print(len(d))
-    #card = d.get_card()
-    #print(card)
-    #print(len(d))
